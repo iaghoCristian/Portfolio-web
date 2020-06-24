@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { FiChevronRight, FiBookmark } from 'react-icons/fi';
-import ReactTooltip from 'react-tooltip';
 
 import { OwnerInfo, Projects } from './styles';
-import profileImg from '../../assets/profile.png';
-import qrCodeImg from '../../assets/frame.png';
+import profileImg from '../../assets/profile.jpeg';
+import qrCodeImg from '../../assets/Iagho_Cristian_Chagas.png';
 import config from '../../config/config';
 
 import api from '../../services/api';
@@ -20,13 +19,20 @@ interface Project {
 const Home: React.FC = () => {
     
     const [projects, setProjects] = useState<Project[]>([]);
-    //const [certificateCount, setCertificateCount] = useState(0);
+    //const [certificateCount, setCertificateCount] = useState<Certificate[]>([]);
 
     useEffect(() => {
         api.get('/projects').then((result)=> {
             setProjects(result.data.projects);
         });
     }, []);
+
+    /*useEffect(()=>{
+        api.get('/certificates').then((result)=>{
+            setCertificateCount(result.data.certificate);
+        })
+    },[]);
+    */
 
     function formatDescription(description: string): string {
         if(description.length > 115){
@@ -41,10 +47,10 @@ const Home: React.FC = () => {
                 <header>
                     <img
                         src={profileImg}
-                        alt="Guilherme da Silva Teixeira"
+                        alt="Iagho Cristian Chagas"
                     />
                     <div>
-                        <strong>Guilherme da Silva Teixeira</strong>
+                        <strong>Iagho Cristian Chagas</strong>
                         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                         Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
                         when an unknown printer took a galley of type and scrambled it to make a type
@@ -67,7 +73,7 @@ const Home: React.FC = () => {
                             </Link>
                         </li>
                     </ul>
-                    <img src={qrCodeImg} width={120} alt=""/>
+                    <img src={qrCodeImg} width={130} alt="Scan to linkedin"/>
                 </div>
                 
             </OwnerInfo>
@@ -77,7 +83,7 @@ const Home: React.FC = () => {
                     <Link key={project.id} to={`/projects/${project.id}`}>
                         <div>
                             <div>
-                                { project.iconPath && <img src={`${config.apiUrl}/icons/${project.iconPath}`} width={17} /> }
+                                { project.iconPath && <img src={`${config.apiUrl}/icons/${project.iconPath}`} width={20} alt={project.name} /> }
                                 <strong>{project.name}</strong>
                             </div>
                             <p>{formatDescription(project.description)}</p>
@@ -87,7 +93,6 @@ const Home: React.FC = () => {
                     </Link>
                 ))}
             </Projects>
-            <ReactTooltip place="bottom" effect="solid"/>
         </>
     );
 };
