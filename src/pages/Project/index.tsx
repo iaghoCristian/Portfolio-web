@@ -56,8 +56,8 @@ const Project: React.FC = () => {
                 <div>
                     <strong>{project.name}</strong>
                     <div>
-                        { project.githubLink && <a href={project.githubLink}><img width="30" src={githubImg} alt="Github link"/></a>}
-                        { project.link && <a href={project.link}><img width="30" src={linkImg} alt="Project link"/></a>}
+                        { project.githubLink && <a href={project.githubLink} target="_blank"><img width="30" src={githubImg} alt="Github link"/></a>}
+                        { project.link && <a href={project.link} target="_blank"><img width="30" src={linkImg} alt="Project link"/></a>}
                         { project.certificate && <Link to={`/certificates/${project.certificate.id}`}><FiBookmark size={30} color="black"/></Link>}
                     </div>
                 </div>

@@ -3,7 +3,7 @@ import { FiChevronRight, FiBookmark } from 'react-icons/fi';
 
 import { OwnerInfo, Projects } from './styles';
 import profileImg from '../../assets/profile.jpeg';
-import qrCodeImg from '../../assets/Iagho_Cristian_Chagas.png';
+import qrCodeImg from '../../assets/qrCodeVCard.png';
 import config from '../../config/config';
 
 import api from '../../services/api';
@@ -16,6 +16,7 @@ interface Project {
     iconPath: string;
 }
 
+
 const Home: React.FC = () => {
     
     const [projects, setProjects] = useState<Project[]>([]);
@@ -25,6 +26,7 @@ const Home: React.FC = () => {
         api.get('/projects').then((result)=> {
             setProjects(result.data.projects);
         });
+        
     }, []);
 
     /*useEffect(()=>{
@@ -51,10 +53,12 @@ const Home: React.FC = () => {
                     />
                     <div>
                         <strong>Iagho Cristian Chagas</strong>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                        when an unknown printer took a galley of type and scrambled it to make a type
-                        specimen book.</p>
+                        <p>Olá, meu nome é Iagho Cristian tenho 23 anos. Sou graduando em Ciência da Computação
+                            e estou no último ano do curso. Atualmente estou buscando uma oportunidade
+                            de estágio. Com isso em mente resolvi criar este portifólio para trazer a vocês
+                            um pouco do que desenvolvi, aprendi e apliquei durante o curso e também em projetos pessoais.<br></br>
+                            <br></br>Enjoy it!
+                        </p>
                     </div>
                 </header>
                 <div>
@@ -64,7 +68,7 @@ const Home: React.FC = () => {
                             <span>Projetos</span>
                         </li>
                         <li>
-                            <strong>{0}</strong>
+                            <strong>{5}</strong>
                             <span>Certificados</span>
                         </li>
                         <li>
@@ -73,7 +77,7 @@ const Home: React.FC = () => {
                             </Link>
                         </li>
                     </ul>
-                    <img src={qrCodeImg} width={130} alt="Scan to linkedin"/>
+                    <img src={qrCodeImg} width={130} alt="Scan to VCard"/>
                 </div>
                 
             </OwnerInfo>
